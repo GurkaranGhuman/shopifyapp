@@ -1,4 +1,5 @@
 <?php
+include_once ("includes/mysqldb.php");
 $api_key = '18529c510a8d512fdc0b07f36998d8b5';
 $secret_key = 'ce0c8ec641f98356b4f792e3ed851477';
 $parameters = $_GET;
@@ -24,9 +25,13 @@ if(hash_equals($hamc, $newhmac)) {
     $response = json_decode($response, true);
     echo print_r($response);
     
+    $query = "INSERT INTO shops (shop_url, access_token, install_date) VALUES('" . $shop_url .  "', '" . $response['access_token'] . "', NOW()) ON DUPLICATE KEY UPDATE access_token='" .$response['access_token'] . "'";
+    if($conn->query($query)){
+        header("Location: https://" . $shop_url . '/admin/apps');
+        exit();
+    }
 }
 else{
     echo 'this is not coming from the shopify app';
 }
-
 ?>
