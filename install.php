@@ -1,6 +1,6 @@
 <?php
 $_API_KEY = '18529c510a8d512fdc0b07f36998d8b5';
-$_NGROK_URL = 'https://b77c-223-178-211-123.ngrok-free.app';
+$_NGROK_URL = 'https://46e9-223-178-211-123.ngrok-free.app';
 $shop= $_GET['shop'];
 $scopes = 'read_products,write_products,read_orders,write_orders';
 $redirect_uri = $_NGROK_URL . '/testapp/token.php';
